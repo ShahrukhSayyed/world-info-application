@@ -1,0 +1,99 @@
+.hero-image {
+    position: relative;
+}
+
+.hero-text-na {
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    color: white;
+    transform: translate(-50%, -50%);
+
+}
+
+.hero-text-sa {
+    text-align: center;
+    position: absolute;
+    top: 58%;
+    left: 35%;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.hero-text-eu {
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 55%;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.hero-text-za {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    color: white;
+    transform: translate(-50%, -50%);
+}    
+
+.hero-text-asia {
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 75%;
+    color: white;
+    transform: translate(-50%, -50%);
+}    
+.hero-text-aus {    
+    text-align: center;
+    position: absolute;
+    top: 62%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+}    
+
+.hero-text button{
+    background-color: lightcyan;
+    color: #4abdac;
+    font-weight: bolder;
+    font-size: 0.5em;
+}
+
+.hero-text button:hover{
+    background-color:white;
+    color: #4abdac;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 500px) { 
+    .hero-text button{
+        font-size: 0.6em;
+    }
+    
+ }
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 699px) and (min-width:500px){
+    .hero-text button{
+        font-size: 0.8em;
+    }
+    
+ }
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 900px ) and (min-width:700px) { 
+    .hero-text button{
+        font-size: 1em;
+    }
+    
+ }
+
+/* Large devices (desktops, less than 1200px) */
+@media (min-width: 901px) { 
+    .hero-text button{
+        font-size: 1.3em;
+    }
+ }

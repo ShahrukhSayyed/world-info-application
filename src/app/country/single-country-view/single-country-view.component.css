@@ -1,0 +1,35 @@
+h1,h3,h5{
+    font-family: 'UnifrakturMaguntia', cursive;    
+}
+
+.col-left{
+    font-family: 'Gugi', cursive;
+    font-size: 1em;    
+    color:#4ABDAC;
+}
+.col-right{
+    font-family: 'Iceberg', cursive;
+    color: darkblue;
+}
+.cardBorder{
+    box-shadow: 0 4px 8px 0 #4ABDAC, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hero-image {
+    height: 100% !important; 
+    width:100% !important;        
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;        
+    box-shadow: 0 4px 8px 0 #4ABDAC, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    color: black;
+    transform: translate(-50%, -50%);
+
+}

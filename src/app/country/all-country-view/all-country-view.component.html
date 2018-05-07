@@ -1,0 +1,123 @@
+<div>
+    <div *ngIf="region">
+      <img src="assets/{{region}}.jpg" alt="Region Flag" class="fluid-image hero-image">
+      <div class="hero-text">
+        <h1 class="text-center">{{region}}</h1>
+      </div>
+    </div>
+  </div>
+  
+ <br>
+
+<div class="container cardBorder padding">
+  <div class="row">
+    <h5>Filters...</h5>
+  </div>
+
+  <div class="row">
+    <div class="input-group col-sm-12 col-md-4 ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+      <input type="text" name="nameValue" [(ngModel)]="nameValue" class="form-control" placeholder="Country Name" aria-label="Name"
+        aria-describedby="basic-addon2">
+    </div>
+    <br>
+    <div class="input-group col-sm-12 col-md-4">
+      <div class="input-group-prepend" style="margin-right: 0.2vw;">
+        <label class="input-group-text" for="sort">Sort By</label>
+      </div>
+      <button class="btn btn-md btn-info active" (click)="setOrder('name')">
+        <i class="fas fa-sort-alpha-down" [hidden]="!reverse"> Ascending</i>
+        <i class="fas fa-sort-alpha-up" [hidden]="reverse"> Descending</i>
+      </button>
+    </div>
+    <br>
+    <div class="input-group col-sm-12 col-md-4">
+      <div class="input-group-prepend" style="margin-right: 0.2vw;">
+        <label class="input-group-text" for="sort">Region Name</label>
+      </div>
+      <select [(ngModel)]="selectedRegionName" (ngModelChange)='onOptionsSelected($event)' name="selectedRegionName" class="form-control">
+        <option value="Africa">Africa</option>
+        <option value="Americas">Americas</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let country of regionalCountries | filterData: nameValue | orderBy: order:reverse:'case-sensitive' | paginate: { itemsPerPage: 6, currentPage: p }">
+      <div class="card cardBorder" id="cardDetails">
+        <img class="card-img-top" src="{{country.flag}}" style="width:100%; height:30vh" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{country.name}}
+            <br>
+            <span class="card-text text-muted" style="font-size: 0.8em">Country in
+              <a class="btn-link" [routerLink]="['/allCountry', 'region', country.region , 'all']">{{country.region}}</a>
+            </span>
+          </h5>
+          <p class="card-text">
+            Capital :
+            <span *ngIf="country.capital"> {{country.capital}}</span>
+            <span *ngIf="!country.capital"> Not Available</span>
+
+            <br> Subregion :
+            <span *ngIf="country.subregion"> {{country.subregion}}</span>
+            <span *ngIf="!country.subregion"> Not Available</span>
+
+            <br> Time Zone :
+            <span> {{country.timezones}}</span>
+
+            <br> Population :
+            <span *ngIf="country.population"> {{country.population}}</span>
+            <span *ngIf="!country.population"> Not Available</span>
+
+            <br> Languages :
+            <span *ngIf="country.languages">
+              <span *ngFor="let language of country.languages;let last=last;">
+                <a class="btn-link" [routerLink]="['/allCountry', 'lang', language.iso639_1 , language.name]">{{language.name}} ({{language.nativeName}}) {{(last) ? " ":", "}}</a>
+              </span>
+
+            </span>
+
+            <br> Currency :
+            <span>
+              <span *ngFor="let currency of country.currencies;let last=last;">
+                <a class="btn-link" *ngIf="currency.code" [routerLink]="['/allCountry', 'currency', currency.code , currency.name]">{{currency.name}} ({{currency.symbol}}) {{currency.code }} {{(last) ? " ":", "}}</a>
+              </span>
+            </span>
+          </p>
+        </div>
+        <div class="card-footer">
+          <button id="quickLookButton" type="button" class="btn btn-info btn-md btn-block" [routerLink]="['/country', country.alpha3Code]">Quick Look</button>
+        </div>
+      </div>
+      <br>
+
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <button type="button" class="btn btn-outline-info" (click)="goBack()">
+        <i class="fas fa-arrow-circle-left"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,253 @@
+<div>
+  <div *ngIf="countryFlag">
+    <img src="{{countryFlag}}" alt="Country Flag" class="fluid-image hero-image">
+    <div class="hero-text">
+      <h1 class="text-center">{{countryDetails.name}}</h1>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="container" id="details">
+  <div class="row">
+
+    <div class="col-12">
+      <br>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#basic">Basic Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#geographic">Geographic Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#alt">Alternate Callings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#currency">Currency</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#languages">Languages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#regional">Regional Blocks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#translations">Translations</a>
+        </li>
+
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="basic" class="container tab-pane active">
+          <br>
+          <h3>Basic Details</h3>
+          <table class="table table-hover table-responsive">
+            <tbody>
+              <tr>
+                <td class="col-left">Native Name </td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.nativeName"> {{countryDetails.nativeName}} </span>
+                  <span *ngIf="!countryDetails.nativeName"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Demonym </td>
+                <td class="col-right" >
+                  <span *ngIf="countryDetails.demonym"> {{countryDetails.demonym }}</span>
+                  <span *ngIf="!countryDetails.demonym"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Capital </td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.capital"> {{countryDetails.capital}}</span>
+                  <span *ngIf="!countryDetails.capital"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Region </td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.region"> 
+                      <a class="btn-link" [routerLink]="['/allCountry', 'region', countryDetails.region , 'all']">{{countryDetails.region}}</a>
+                  </span>
+                  <span *ngIf="!countryDetails.region"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Subregion </td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.subregion"> {{countryDetails.subregion}}</span>
+                  <span *ngIf="!countryDetails.subregion"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Time Zone </td>
+                <td class="col-right" *ngIf="countryDetails.timezones">
+                  <span *ngFor="let timezone of countryDetails.timezones;let last=last;">{{timezone }}{{(last) ? " ":", "}} </span>
+                  <span *ngIf="countryDetails.timezones.length == 0"> Not Available</span>
+
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Calling Code </td>
+                <td class="col-right" *ngIf="countryDetails.callingCodes">
+                  <span *ngFor="let callingCode of countryDetails.callingCodes;let last=last;">{{callingCode }}{{(last) ? " ":", "}} </span>
+                  <span *ngIf="countryDetails.callingCodes.length == 0"> Not Available</span>
+
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Internet TLD </td>
+                <td class="col-right" *ngIf="countryDetails.topLevelDomain">
+                  <span *ngFor="let tld of countryDetails.topLevelDomain;let last=last;">{{tld }}{{(last) ? " ":", "}} </span>
+                  <span *ngIf="countryDetails.topLevelDomain.length == 0"> Not Available</span>
+
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Numeric Code </td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.numericCode">{{countryDetails.numericCode}}</span>
+                  <span *ngIf="!countryDetails.numericCode"> Not Available</span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+        <div id="geographic" class="container tab-pane fade">
+          <br>
+          <h3>Geographic Details</h3>
+          <table class="table table-hover table-responsive">
+            <tbody>
+              <tr>
+                <td class="col-left">Area</td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.area"> {{countryDetails.area}} KM
+                    <sup>2</sup>
+                  </span>
+                  <span *ngIf="!countryDetails.area"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Shares border with</td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.borders">
+                    <span *ngFor="let border of countryDetails.borders;let last=last;">
+                      <a class="btn-link" [routerLink]="['/country', border]">{{border}}{{(last) ? " ":", "}}</a>
+                    </span>
+                    <span *ngIf="countryDetails.borders.length == 0"> Not Available</span>
+                  </span>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Gini Index</td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.gini"> {{countryDetails.gini}}</span>
+                  <span *ngIf="!countryDetails.gini"> Not Available</span>
+                </td>
+
+              </tr>
+              <tr>
+                <td class="col-left">Lat Long</td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.latlng"> {{countryDetails.latlng[0]}} N, {{countryDetails.latlng[1]}} E</span>
+                  <span *ngIf="!countryDetails.latlng"> Not Available</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-left">Population</td>
+                <td class="col-right">
+                  <span *ngIf="countryDetails.population"> {{countryDetails.population}}</span>
+                  <span *ngIf="!countryDetails.population"> Not Available</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="alt" class="container tab-pane fade">
+          <br>
+          <h3>Alternate Callings</h3>
+          <div *ngIf="countryDetails.altSpellings">
+            <div class="col-right" *ngFor="let call of countryDetails.altSpellings;let last=last;">
+              {{call }}{{(last) ? " ":", "}}
+            </div>
+            <span *ngIf="countryDetails.altSpellings.length == 0"> Not Available</span>
+          </div>
+        </div>
+
+        <div id="currency" class="container tab-pane fade">
+          <br>
+          <h3>Currency(s)</h3>
+          <div *ngIf="countryDetails.currencies">
+            <div class="col-right" *ngFor="let currency of countryDetails.currencies;let last=last;">
+                <a class="btn-link" [routerLink]="['/allCountry', 'currency', currency.code, currency.name]">{{currency.name}} ({{currency.symbol}}) {{currency.code }} {{(last) ? " ":", "}}</a>
+            </div>
+            <div *ngIf="countryDetails.currencies.length == 0">
+                <span > Not Available</span>              
+            </div>
+          </div>
+        </div>
+
+        <div id="languages" class="container tab-pane fade">
+          <br>
+          <h3>Language(s)</h3>
+          <div *ngIf="countryDetails.languages">
+            <div class="col-right" *ngFor="let language of countryDetails.languages;let last=last;">
+                <a class="btn-link" [routerLink]="['/allCountry', 'lang', language.iso639_1, language.name]">{{language.name}} ({{language.nativeName}}) {{(last) ? " ":", "}}</a>                
+            </div>
+            <div *ngIf="countryDetails.languages.length == 0">
+                <span > Not Available</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="regional" class="container tab-pane fade">
+          <br>
+          <h3>Regional Blocks</h3>
+          <div *ngIf="countryDetails.regionalBlocs">
+            <div class="col-right" *ngFor="let block of countryDetails.regionalBlocs;let last=last;">
+              {{block.acronym}} - ({{block.name}}) {{(last) ? " ":", "}}
+            </div>
+            <div *ngIf="countryDetails.regionalBlocs.length == 0">
+                <span > Not Available</span>
+            </div>
+  
+          </div>
+        </div>
+
+        <div id="translations" class="container tab-pane fade">
+          <br>
+          <h3>Translations</h3>
+          <div class="col-right" *ngFor="let translation of simplifiedTranslation;let last=last;">
+            {{translation}} {{(last) ? " ":", "}}
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <br>
+</div>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <button type="button" class="btn btn-outline-info" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i></button>
+        </div>        
+    </div>    
+</div>
+
+<br>
